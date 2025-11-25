@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doom - Web DOS Player</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://js-dos.com/6.22/current/js-dos.js"></script>
+</head>
+<body>
+
+    <div class="overlay"></div> 
+    
+    <div class="main-container">
+        <header>
+            <h1><span class="flicker">DOOM</span> WEB</h1>
+            <p>TURBO MODE: ON</p>
+        </header>
+
+        <div class="arcade-frame" id="game-container">
+            <canvas id="jsdos" class="dos-canvas"></canvas>
+        </div>
+
+        <button onclick="toggleFullScreen()" class="retro-btn">
+            [ ] TELA CHEIA
+        </button>
+
+        <footer>
+            <div>
+                MOVER: <span class="key">W</span><span class="key">A</span><span class="key">S</span><span class="key">D</span>
+            </div>
+            <div style="margin-top: 10px;">
+                ATIRAR: <span class="key">MOUSE (CLIQUE)</span> &nbsp;&nbsp; SAIR: <span class="key">ESC</span>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Função Tela Cheia
+        function toggleFullScreen() {
+            var elem = document.getElementById("game-container");
+            if (!document.fullscreenElement) {
+                if (elem.requestFullscreen) elem.requestFullscreen();
+                else if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen();
+                else if (elem.msRequestFullscreen) elem.msRequestFullscreen();
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+            }
+        }
+
+        // Configuração Padrão (Sem mexer nos controles do jogo)
+        Dos(document.getElementById("jsdos"), { 
+            wdosboxUrl: "https://js-dos.com/6.22/current/wdosbox.js",
+            cycles: "max", 
+            autolock: true, // Apenas prende o mouse para mirar/atirar
+        }).ready(function (fs, main) {
+            fs.extract("{{ url_for('static', filename='games/doom.jsdos') }}").then(function () {
+                main(["-c", "doom.exe"]).catch(function(err) {
+                    console.error("Erro ao iniciar:", err);
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
