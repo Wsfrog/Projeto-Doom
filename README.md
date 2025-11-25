@@ -44,18 +44,13 @@ Um emulador web estilizado para rodar **DOOM (1993)** diretamente no navegador u
     ```bash
     pip install flask
     ```
-
-4.  **⚠️ Adicione o arquivo do Jogo:**
-    Por motivos de direitos autorais, o arquivo do jogo não está incluído.
-    * Consiga um arquivo **`doom.jsdos`**.
-    * Coloque-o na pasta: `static/games/doom.jsdos`.
-
-5.  **Execute o servidor:**
+    
+4.  **Execute o servidor:**
     ```bash
     python app.py
     ```
 
-6.  **Jogue:**
+5.  **Jogue:**
     Abra seu navegador em: `http://127.0.0.1:5000`
 
 ## 🎮 Controles
