@@ -18,7 +18,7 @@ Um emulador web estilizado para rodar **DOOM (1993)** diretamente no navegador u
 ## 🚀 Como Rodar
 
 ### Pré-requisitos
-* Python 3.x instalado.
+* Python instalado.
 
 ### Passo a Passo
 
